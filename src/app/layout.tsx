@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
+import { FranceschiniAnalytics } from "@colinfran/analytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body className={`${inter.variable} h-full font-sans antialiased`}>
         <ThemeProvider>
           <TooltipProvider>{children}</TooltipProvider>
+          <FranceschiniAnalytics websiteId="web_DBQMJB1gR85vgVOq6Wg3"/>
         </ThemeProvider>
       </body>
     </html>
