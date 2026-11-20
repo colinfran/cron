@@ -23,6 +23,11 @@ services:
     build:
       context: .
     restart: unless-stopped
+    # watchdog.mjs starts the app only once Postgres accepts connections, and
+    # exits if it stops answering so the restart policy brings it back.
+    entrypoint: ["node", "/watchdog/watchdog.mjs", "./docker-entrypoint.sh"]
+    volumes:
+      - ./watchdog.mjs:/watchdog/watchdog.mjs:ro
     ports:
       - "127.0.0.1:${APP_PORT:-3010}:3000"
     depends_on:
